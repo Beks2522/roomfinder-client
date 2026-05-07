@@ -244,7 +244,7 @@ const Hotels = () => {
                     html: `<div class="bg-white text-gray-900 font-extrabold text-sm px-3 py-1.5 rounded-full shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition cursor-pointer whitespace-nowrap">
                              ${hotel.price} ₸
                            </div>`,
-                    iconSize: null, // null означает автоматический размер плашки
+                    iconSize: null, 
                     iconAnchor: [20, 15],
                   });
 
