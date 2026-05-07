@@ -1,8 +1,41 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Wifi, Car, MapPin } from 'lucide-react';
+import axios from 'axios'; 
 
 const HotelCard = ({ hotel, isFavoriteInitial }) => {
+ 
+  const [isFavorite, setIsFavorite] = useState(isFavoriteInitial);
+
   const hotelImage = hotel.image || (hotel.images && hotel.images[0]) || hotel.image_url || "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop";
+
+
+  const handleFavoriteClick = async (e) => {
+    e.preventDefault(); 
+    
+    try {
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        alert('Пожалуйста, авторизуйтесь для добавления в избранное');
+        return;
+      }
+
+     
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/favorites`, 
+        { hotel_id: hotel.id },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      
+      setIsFavorite(!isFavorite);
+
+    } catch (error) {
+      console.error('Ошибка при добавлении в избранное:', error);
+      alert('Не удалось добавить в избранное');
+    }
+  };
 
   return (
     <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col sm:flex-row group">
@@ -12,16 +45,21 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
           alt={hotel.name} 
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <button className="absolute top-4 right-4 bg-white/80 backdrop-blur-md p-2 rounded-full text-gray-400 hover:text-red-500 transition shadow-sm z-10">
-          <svg xmlns="http://www.w3.org/2000/svg" fill={isFavoriteInitial ? "currentColor" : "none"} viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+        
+        
+        <button 
+          onClick={handleFavoriteClick}
+          className="absolute top-4 right-4 bg-white/80 backdrop-blur-md p-2 rounded-full text-gray-400 hover:text-red-500 transition shadow-sm z-10"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill={isFavorite ? "currentColor" : "none"} viewBox="0 0 24 24" strokeWidth={1.5} stroke={isFavorite ? "currentColor" : "currentColor"} className={`w-5 h-5 ${isFavorite ? 'text-red-500' : ''}`}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
           </svg>
         </button>
       </div>
+
       <div className="flex-1 p-5 lg:p-6 flex flex-col justify-between min-w-0">
         <div>
           <div className="flex flex-wrap justify-between items-start mb-2 gap-3">
-            
             <div className="min-w-0 flex-1">
               <h3 className="text-lg lg:text-xl font-extrabold text-gray-900 group-hover:text-blue-600 transition-colors truncate">
                 {hotel.name}
