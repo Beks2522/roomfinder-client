@@ -10,7 +10,6 @@ import {
   MapPin, Star, ChevronRight, Info, MessageSquare 
 } from 'lucide-react';
 
-// Современный маркер с ценой
 const createModernMarker = (price) => new L.divIcon({
   className: 'bg-transparent',
   html: `
@@ -36,7 +35,6 @@ const HotelDetails = () => {
   const [newComment, setNewComment] = useState('');
   const [reviewLoading, setReviewLoading] = useState(false);
 
-  // Удобства с профессиональными иконками
   const defaultAmenities = [
     { name: 'Бесплатный Wi-Fi', icon: <Wifi className="w-5 h-5 text-blue-500" /> },
     { name: 'Кондиционер', icon: <Snowflake className="w-5 h-5 text-blue-500" /> },
@@ -105,13 +103,13 @@ const HotelDetails = () => {
   
   if (!hotel) return <div className="min-h-screen flex items-center justify-center text-xl text-red-500">Отель не найден</div>;
 
-  // Умный поиск фото
+
   const hotelImage = hotel.image || (hotel.images && hotel.images[0]) || hotel.image_url || "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop";
 
   return (
     <div className="bg-gray-50 min-h-screen pb-24 font-sans text-gray-900 pt-8">
       
-      {/* Навигация (Breadcrumbs) */}
+    
       <div className="max-w-300 mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <nav className="text-sm font-medium text-gray-500 flex flex-wrap gap-2 items-center">
           <Link to="/" className="hover:text-blue-600 transition">Главная</Link> 
@@ -125,8 +123,7 @@ const HotelDetails = () => {
       </div>
 
       <div className="max-w-300 mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Заголовок отеля */}
+
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-2">
@@ -157,17 +154,15 @@ const HotelDetails = () => {
           </div>
         </div>
 
-        {/* Главное фото */}
         <div className="w-full h-100 md:h-125 rounded-3xl overflow-hidden shadow-md mb-12 relative">
           <img src={hotelImage} alt={hotel.name} className="w-full h-full object-cover hover:scale-105 transition duration-700 ease-in-out" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10">
-          
-          {/* ЛЕВАЯ КОЛОНКА (Инфо, Карта, Отзывы) */}
+     
           <div className="w-full lg:w-2/3 space-y-10">
             
-            {/* Блок: Описание */}
+           
             <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl font-extrabold mb-6 text-gray-900 flex items-center">
                 <Info className="w-6 h-6 mr-3 text-blue-600" />
@@ -178,7 +173,6 @@ const HotelDetails = () => {
               </p>
             </section>
 
-            {/* Блок: Удобства */}
             <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl font-extrabold mb-8 text-gray-900">Главные удобства</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
@@ -193,7 +187,7 @@ const HotelDetails = () => {
               </div>
             </section>
 
-            {/* Блок: Карта */}
+          
             <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl font-extrabold mb-8 text-gray-900 flex items-center">
                 <MapPin className="w-6 h-6 mr-3 text-blue-600" />
@@ -223,7 +217,6 @@ const HotelDetails = () => {
               </div>
             </section>
 
-            {/* Блок: Отзывы */}
             <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl font-extrabold mb-8 text-gray-900 flex items-center">
                 <MessageSquare className="w-6 h-6 mr-3 text-blue-600" />
@@ -295,7 +288,6 @@ const HotelDetails = () => {
             </section>
           </div>
 
-          {/* ПРАВАЯ КОЛОНКА (Липкая карточка бронирования) */}
           <aside className="w-full lg:w-1/3">
             <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 sticky top-28">
               <div className="flex items-end gap-2 mb-8 border-b border-gray-100 pb-6">

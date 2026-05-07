@@ -7,7 +7,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Filter, ChevronDown, MapPin } from 'lucide-react';
 
-// Современный минималистичный маркер для центра
 const modernMarker = new L.divIcon({
   className: 'bg-transparent',
   html: `<div class="w-6 h-6 bg-blue-600 border-4 border-white rounded-full shadow-md"></div>`,
@@ -24,15 +23,12 @@ const Hotels = () => {
   const [loading, setLoading] = useState(true);
   const [favoriteIds, setFavoriteIds] = useState([]);
 
-  // Состояния фильтров
   const [selectedCity, setSelectedCity] = useState('Все города');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   
-  // Координаты центра карты (по умолчанию Алматы)
   const mapCenter = [43.238949, 76.889709];
 
-  // Функция загрузки отелей с учетом пагинации
   const fetchHotelsAndFavs = async (currentPage = 1) => {
     if (currentPage === 1) setLoading(true);
     try {
@@ -87,7 +83,7 @@ const Hotels = () => {
     return matchCity && matchMin && matchMax;
   });
 
-  // Компонент скелетона для красивой загрузки
+ 
   const SkeletonCard = () => (
     <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm flex flex-col md:flex-row animate-pulse">
       <div className="w-full md:w-72 h-56 md:h-auto bg-gray-200"></div>
@@ -113,7 +109,7 @@ const Hotels = () => {
       <div className="max-w-400 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-8 relative">
           
-          {/* КОЛОНКА 1: Фильтры (Слева) */}
+      
           <aside className="w-full lg:w-1/4 xl:w-1/5 shrink-0">
             <div className="bg-white p-6 rounded-3xl border border-gray-100 sticky top-28 shadow-sm">
               <div className="flex items-center mb-6">
@@ -174,7 +170,6 @@ const Hotels = () => {
             </div>
           </aside>
 
-          {/* КОЛОНКА 2: Список отелей (Посередине) */}
           <main className="w-full lg:w-2/4 xl:w-2/5 grow">
             {loading && page === 1 ? (
               <div className="flex flex-col gap-6">
@@ -216,11 +211,10 @@ const Hotels = () => {
             )}
           </main>
 
-          {/* КОЛОНКА 3: Карта (Справа) */}
           <aside className="hidden xl:block w-2/5 shrink-0 z-0">
             <div className="sticky top-28 h-[calc(100vh-140px)] bg-gray-200 rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
               
-              {/* Исправленный MapContainer: зум отключен, все маркеры внутри */}
+     
               <MapContainer 
                 center={mapCenter} 
                 zoom={12} 
@@ -233,7 +227,6 @@ const Hotels = () => {
                   url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" 
                 />
                 
-                {/* 1. Маркер зоны поиска */}
                 <Marker position={mapCenter} icon={modernMarker}>
                   <Popup className="rounded-xl font-sans">
                     <b className="text-gray-900 block mb-1">Зона поиска</b>
@@ -241,7 +234,7 @@ const Hotels = () => {
                   </Popup>
                 </Marker>
 
-                {/* 2. Динамические маркеры отелей с ценами */}
+               
                 {filteredHotels.map(hotel => {
                   const lat = hotel.lat || mapCenter[0] + (Math.random() - 0.5) * 0.05;
                   const lng = hotel.lng || mapCenter[1] + (Math.random() - 0.5) * 0.05;

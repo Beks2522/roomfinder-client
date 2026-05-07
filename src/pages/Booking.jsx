@@ -12,14 +12,10 @@ const Booking = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-
-  // Состояния для дат
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
   const [nights, setNights] = useState(0);
-
-  // Получаем данные отеля для отображения в чеке
   useEffect(() => {
     const fetchHotel = async () => {
       try {
@@ -33,14 +29,10 @@ const Booking = () => {
     };
     fetchHotel();
   }, [id]);
-
-  // Умный подсчет стоимости при изменении дат
   useEffect(() => {
     if (checkIn && checkOut && hotel) {
       const start = new Date(checkIn);
       const end = new Date(checkOut);
-      
-      // Проверка, что выезд позже заезда
       if (end > start) {
         const diffTime = Math.abs(end - start);
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -70,8 +62,6 @@ const Booking = () => {
         { hotel_id: id, check_in: checkIn, check_out: checkOut, total_price: totalPrice },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      
-      // После успешной брони отправляем в профиль
       navigate('/profile');
     } catch (err) {
       setError(err.response?.data?.message || 'Ошибка при оформлении бронирования');
@@ -82,8 +72,6 @@ const Booking = () => {
 
   if (loading) return <div className="min-h-screen flex items-center justify-center text-gray-500">Подготовка к бронированию...</div>;
   if (!hotel) return <div className="min-h-screen flex items-center justify-center text-red-500">Отель не найден</div>;
-
-  // Рассчитываем сегодняшнюю дату, чтобы нельзя было забронировать в прошлом
   const today = new Date().toISOString().split('T')[0];
 
   return (
@@ -93,8 +81,6 @@ const Booking = () => {
         <h1 className="text-3xl md:text-4xl font-extrabold text-blue-950 mb-10">Оформление бронирования</h1>
 
         <div className="flex flex-col-reverse lg:flex-row gap-8">
-          
-          {/* ЛЕВАЯ КОЛОНКА: Форма ввода данных */}
           <div className="w-full lg:w-2/3">
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <h2 className="text-2xl font-bold mb-6 text-blue-950">Ваши данные</h2>
@@ -154,8 +140,6 @@ const Booking = () => {
               </form>
             </div>
           </div>
-
-          {/* ПРАВАЯ КОЛОНКА: Детали заказа (Чек) */}
           <aside className="w-full lg:w-1/3">
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 sticky top-24 animate-in fade-in slide-in-from-right-4 duration-500">
               <h3 className="text-xl font-bold mb-4 text-gray-900">Детали бронирования</h3>

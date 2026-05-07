@@ -5,23 +5,16 @@ import { AuthContext } from '../context/AuthContext';
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
   
-  const [activeTab, setActiveTab] = useState('hotels'); 
-
-  // --- Состояния для добавления отеля ---
+  const [activeTab, setActiveTab] = useState('hotels');
   const [formData, setFormData] = useState({ name: '', city: '', address: '', price: '', stars: '5', description: '' });
-  const [file, setFile] = useState(null); 
+  const [file, setFile] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [loading, setLoading] = useState(false);
-
-  // --- Состояния для списка отелей (Удаление) ---
   const [hotelsList, setHotelsList] = useState([]);
   const [hotelsLoading, setHotelsLoading] = useState(false);
-
-  // --- Состояния для бронирований ---
   const [bookings, setBookings] = useState([]);
   const [bookingsLoading, setBookingsLoading] = useState(false);
 
-  // Загрузка данных в зависимости от активной вкладки
   useEffect(() => {
     if (activeTab === 'bookings') {
       fetchBookings();
@@ -30,7 +23,6 @@ const AdminDashboard = () => {
     }
   }, [activeTab]);
 
-  // --- ЛОГИКА ОТЕЛЕЙ ---
   const fetchHotels = async () => {
     setHotelsLoading(true);
     try {
@@ -75,7 +67,7 @@ const AdminDashboard = () => {
       setMessage({ text: 'Отель успешно добавлен!', type: 'success' });
       setFormData({ name: '', city: '', address: '', price: '', stars: '5', description: '' });
       setFile(null); 
-      fetchHotels(); // Обновляем список отелей после добавления
+      fetchHotels(); 
     } catch (err) {
       setMessage({ text: err.response?.data?.message || 'Ошибка при добавлении', type: 'error' });
     } finally {
@@ -91,7 +83,7 @@ const AdminDashboard = () => {
       await axios.delete(`${import.meta.env.VITE_API_URL}/api/hotels/${hotelId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      // Обновляем локальный список, убирая удаленный отель
+  
       setHotelsList(hotelsList.filter(h => h.id !== hotelId));
       alert('Отель успешно удален');
     } catch (err) {
@@ -99,7 +91,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // --- ЛОГИКА ЗАКАЗОВ ---
   const fetchBookings = async () => {
     setBookingsLoading(true);
     try {
@@ -160,11 +151,9 @@ const AdminDashboard = () => {
         </button>
       </div>
 
-      {/* ВКЛАДКА: УПРАВЛЕНИЕ ОТЕЛЯМИ */}
       {activeTab === 'hotels' && (
         <div className="space-y-8">
           
-          {/* Форма добавления */}
           <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 max-w-4xl animate-in fade-in duration-500">
             <h2 className="text-2xl font-bold mb-6 text-gray-950">Новый отель</h2>
             {message.text && (
@@ -221,8 +210,6 @@ const AdminDashboard = () => {
               </button>
             </form>
           </div>
-
-          {/* Список существующих отелей */}
           <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h2 className="text-2xl font-bold mb-6 text-gray-950">Существующие отели</h2>
             {hotelsLoading ? (
@@ -260,8 +247,6 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
-
-      {/* ВКЛАДКА: УПРАВЛЕНИЕ ЗАКАЗАМИ */}
       {activeTab === 'bookings' && (
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden animate-in fade-in duration-500">
           {bookingsLoading ? (

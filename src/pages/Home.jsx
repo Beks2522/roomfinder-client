@@ -4,10 +4,7 @@ import { MapPin, Calendar, Users, Search, ThumbsUp, Globe, MessageSquare } from 
 const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      
-      {/* Блок 1: Главный экран (Hero Section) */}
       <div className="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden">
-        {/* Фоновое изображение с затемнением */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-linear-to-b from-blue-950/80 to-blue-900/60"></div>
         </div>
@@ -20,7 +17,6 @@ const Home = () => {
             Бронируйте жилье по всему миру с комфортом и без переплат.
           </p>
 
-          {/* Плавающая панель поиска */}
           <div className="bg-white p-2 rounded-3xl md:rounded-full max-w-5xl mx-auto flex flex-col md:flex-row items-center shadow-2xl border border-white/20">
             
             <div className="flex-1 flex items-center px-6 py-4 md:py-2 w-full border-b md:border-b-0 md:border-r border-gray-100 hover:bg-gray-50 rounded-t-2xl md:rounded-l-full md:rounded-tr-none transition cursor-text">
@@ -54,8 +50,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* Блок 2: Преимущества (Вместо смайликов) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-3 gap-10">
           
@@ -91,8 +85,6 @@ const Home = () => {
 
         </div>
       </div>
-
-      {/* Блок 3: Популярные направления */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="flex justify-between items-end mb-8">
           <h2 className="text-3xl font-extrabold text-gray-900">Популярные направления</h2>

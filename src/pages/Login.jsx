@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import supabase from '../config/supabaseClient'; // Добавили импорт клиента Supabase
+import supabase from '../config/supabaseClient';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -32,7 +32,6 @@ const Login = () => {
     }
   };
 
-  // Новая функция для авторизации через Google
   const handleGoogleLogin = async () => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
@@ -94,7 +93,6 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Разделитель "или" */}
         <div className="my-8 flex items-center gap-4">
           <hr className="w-full border-gray-200" />
           <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">или</span>

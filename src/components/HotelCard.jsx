@@ -6,8 +6,6 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
 
   return (
     <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col sm:flex-row group">
-      
-      {/* Изображение: теперь оно адаптивно уменьшается (shrink-0), чтобы оставить место тексту */}
       <div className="relative w-full sm:w-56 md:w-64 lg:w-72 h-56 sm:h-auto shrink-0 overflow-hidden">
         <img 
           src={hotelImage} 
@@ -20,8 +18,6 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
           </svg>
         </button>
       </div>
-
-      {/* Контент: добавлен min-w-0, чтобы длинные тексты обрезались (...), а не ломали верстку */}
       <div className="flex-1 p-5 lg:p-6 flex flex-col justify-between min-w-0">
         <div>
           <div className="flex flex-wrap justify-between items-start mb-2 gap-3">
@@ -35,8 +31,6 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
                 <span className="truncate">{hotel.city}{hotel.address ? `, ${hotel.address}` : ''}</span>
               </div>
             </div>
-            
-            {/* Рейтинг */}
             <div className="flex flex-col items-end shrink-0">
               <div className="flex items-center gap-1.5">
                  <span className="text-[10px] sm:text-xs font-bold text-gray-900 uppercase tracking-tighter hidden sm:block">
@@ -48,8 +42,6 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
               </div>
             </div>
           </div>
-
-          {/* Удобства */}
           <div className="flex flex-wrap gap-2 mt-4">
             <div className="flex items-center text-xs font-bold text-gray-600 bg-gray-50 px-2.5 py-1.5 rounded-xl border border-gray-100">
               <Wifi className="w-3.5 h-3.5 mr-1.5 text-blue-500" />
@@ -62,7 +54,6 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
           </div>
         </div>
 
-        {/* Цена и Кнопка: добавлен flex-wrap, чтобы в тесных местах кнопка съезжала вниз, а не плющилась */}
         <div className="flex flex-wrap items-end justify-between mt-5 pt-4 border-t border-gray-50 gap-4">
           <div className="flex flex-col">
             <span className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">Цена за ночь</span>

@@ -62,8 +62,6 @@ const Profile = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-16 text-gray-900 font-sans">
       <h1 className="text-4xl font-extrabold mb-10 text-gray-950">Личный кабинет</h1>
-      
-      {/* Шапка профиля */}
       <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mb-12 flex items-center gap-8">
         <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-md shadow-blue-200">
           {user?.name?.charAt(0).toUpperCase()}
@@ -73,8 +71,6 @@ const Profile = () => {
           <p className="text-gray-500 text-lg">{user?.email}</p>
         </div>
       </div>
-
-      {/* Переключатель вкладок */}
       <div className="flex gap-2 border-b border-gray-200 mb-10">
         <button onClick={() => setActiveTab('bookings')} className={`pb-4 px-4 text-lg font-bold transition relative ${activeTab === 'bookings' ? 'text-blue-600' : 'text-gray-400 hover:text-gray-700'}`}>
           Мои бронирования
@@ -85,8 +81,6 @@ const Profile = () => {
           {activeTab === 'favorites' && <div className="absolute -bottom-px left-0 w-full h-1 bg-blue-600 rounded-t-lg"></div>}
         </button>
       </div>
-
-      {/* ВКЛАДКА 1: Бронирования */}
       {activeTab === 'bookings' && (
         <div className="space-y-6">
           {bookingsLoading ? (
@@ -137,8 +131,6 @@ const Profile = () => {
           )}
         </div>
       )}
-
-      {/* ВКЛАДКА 2: Избранное */}
       {activeTab === 'favorites' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {favLoading ? (
@@ -155,8 +147,6 @@ const Profile = () => {
           )}
         </div>
       )}
-
-      {/* Модалка билета с QR */}
       {selectedBooking && (
         <div className="fixed inset-0 bg-gray-950/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setSelectedBooking(null)}>
           <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden" onClick={e => e.stopPropagation()}>
