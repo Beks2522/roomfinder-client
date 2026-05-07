@@ -190,7 +190,7 @@ const HotelDetails = () => {
           
             <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl font-extrabold mb-8 text-gray-900 flex items-center">
-                <MapPin className="w-6 h-6 mr-6 text-blue-600" />
+                <MapPin className="w-12 h-6 mr-6 text-blue-600" />
                 Расположение
               </h2>
               <div className="h-100 rounded-3xl overflow-hidden border border-gray-100 z-0 relative shadow-sm">
