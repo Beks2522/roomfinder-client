@@ -6,7 +6,7 @@ const Home = () => {
     <div className="min-h-screen bg-gray-50 font-sans">
       <div className="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-linear-to-b from-blue-600 to-blue-900/60"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-blue-700 to-blue-900/60"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
