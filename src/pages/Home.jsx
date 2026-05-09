@@ -43,10 +43,14 @@ const Home = () => {
               </div>
             </div>
 
-            <button className="w-full md:w-auto mt-2 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-2xl md:rounded-full transition duration-300 flex items-center justify-center shrink-0 shadow-md shadow-blue-600/30">
-              <Search className="w-5 h-5 mr-2" />
-              Найти
-            </button>
+<Link
+  to="/hotels"
+  state={{ filterCity: 'Все города' }}
+  className="w-full md:w-auto mt-2 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-2xl md:rounded-full transition duration-300 flex items-center justify-center shrink-0 shadow-md shadow-blue-600/30"
+>
+  <Search className="w-5 h-5 mr-2" />
+  Найти
+</Link>
           </div>
         </div>
       </div>

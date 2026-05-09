@@ -159,10 +159,7 @@ const HotelDetails = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10">
-     
           <div className="w-full lg:w-2/3 space-y-10">
-            
-           
             <section className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h2 className="text-2xl font-extrabold mb-6 text-gray-900 flex items-center">
                 <Info className="w-6 h-6 mr-3 text-blue-600" />

@@ -4,7 +4,6 @@ import { Wifi, Car, MapPin } from 'lucide-react';
 import axios from 'axios'; 
 
 const HotelCard = ({ hotel, isFavoriteInitial }) => {
- 
   const [isFavorite, setIsFavorite] = useState(isFavoriteInitial);
 
   const hotelImage = hotel.image || (hotel.images && hotel.images[0]) || hotel.image_url || "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop";
@@ -21,7 +20,6 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
         return;
       }
 
-     
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/favorites`, 
         { hotel_id: hotel.id },
@@ -71,12 +69,12 @@ const HotelCard = ({ hotel, isFavoriteInitial }) => {
             </div>
             <div className="flex flex-col items-end shrink-0">
               <div className="flex items-center gap-1.5">
-                 <span className="text-[10px] sm:text-xs font-bold text-gray-900 uppercase tracking-tighter hidden sm:block">
-                   {hotel.rating >= 9 ? 'Превосходно' : hotel.rating > 0 ? 'Хорошо' : 'Новый'}
-                 </span>
-                 <div className="bg-blue-600 text-white font-bold px-2 py-1 rounded-lg text-sm">
-                   {hotel.rating > 0 ? hotel.rating : '—'}
-                 </div>
+                <span className="text-[10px] sm:text-xs font-bold text-gray-900 uppercase tracking-tighter hidden sm:block">
+                  {hotel.rating >= 9 ? 'Превосходно' : hotel.rating > 0 ? 'Хорошо' : 'Новый'}
+                </span>
+                <div className="bg-blue-600 text-white font-bold px-2 py-1 rounded-lg text-sm">
+                  {hotel.rating > 0 ? hotel.rating : '—'}
+                </div>
               </div>
             </div>
           </div>
